@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\libSecurity\libSecurity.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+		<None Update="doraemon_nobita.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<CETCompat>false</CETCompat>
+		<!-- THÊM DÒNG NÀY ĐỂ KHỚP VỚI BẢN 10.0.13 TRÊN MÁY -->
+		<RuntimeFrameworkVersion>10.0.13</RuntimeFrameworkVersion>
+	</PropertyGroup>
+
+</Project>

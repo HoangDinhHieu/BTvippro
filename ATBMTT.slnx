@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BaiTap1_AES/BaiTap1_AES.csproj" />
+  <Project Path="BaiTap2_RSA/BaiTap2_RSA.csproj" />
+  <Project Path="libSecurity/libSecurity.csproj" />
+</Solution>

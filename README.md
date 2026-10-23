@@ -7,31 +7,48 @@
 - **GitHub**: [HoangDinhHieu](https://github.com/HoangDinhHieu)
 - **Repository**: [BTvippro](https://github.com/HoangDinhHieu/BTvippro)
 
-## 2. Mục tiêu & Nội dung bài tập
-- **Bài 1 - Mã hóa đối xứng AES**:
-  - Sinh khóa AES-256 bit & IV 128 bit.
-  - Lưu và nạp khóa từ file.
-  - Mã hóa / Giải mã văn bản (hiển thị Base64/Hex).
-  - Mã hóa / Giải mã file kích thước lớn (hàng GB) theo luồng (Stream buffer).
-  - Đo thời gian, tính tốc độ (MB/s) và so sánh toàn vẹn dữ liệu file gốc vs file giải mã.
-- **Bài 2 - Mã hóa bất đối xứng RSA & Chữ ký số**:
-  - Sinh cặp khóa RSA 2048-bit, xuất ra định dạng PEM chuẩn.
-  - View PEM: Bóc tách cấu trúc ASN.1 / DER và giải thích ý nghĩa các byte.
-  - Import file PEM bóc tách các tham số ($n, e, d, ...$).
-  - Mã hóa / Giải mã dữ liệu $\le 190$ byte (khóa AES 32 byte).
-  - Đánh giá tốc độ giữa Public Key và Private Key.
-  - Băm SHA-256 và kiểm chứng hiệu ứng tuyết lở (Avalanche Effect).
-  - Chữ ký số: Ứng dụng RSA-PSS để cùng 1 dữ liệu, cùng 1 khóa tạo ra các chữ ký khác nhau qua mỗi lần ký.
 
-## 3. Công nghệ sử dụng
-- Ngôn ngữ: C# (.NET)
-- Giao diện: Windows Forms / Desktop Application
-- Quản lý phiên bản: Git & GitHub
+---
 
-## 4. Tiến độ thực hiện
-- [x] Khởi tạo Repository & Cấu trúc dự án
-- [ ] Xây dựng thư viện mã hóa AES (Bài 1)
-- [ ] Giao diện thử nghiệm AES chuỗi & file lớn hàng GB
-- [ ] Xây dựng thư viện & Giao diện RSA, View PEM (Bài 2)
-- [ ] Module kiểm chứng SHA-256 & Chữ ký số RSA-PSS
-- [ ] Đo đạc số liệu, chụp ảnh minh chứng & hoàn thiện báo cáo
+## 2. Công nghệ & Kiến trúc dự án
+- **Nền tảng**: .NET 10 (C#) / Windows Forms App
+- **Kiến trúc giải pháp**:
+  - `libSecurity`: Thư viện xử lý thuật toán mật mã dùng chung (`MyAES`, `MyRSA`, hàm băm).
+  - `BaiTap1_AES`: Giao diện ứng dụng mã hóa đối xứng AES.
+  - `BaiTap2_RSA`: Giao diện ứng dụng mã hóa bất đối xứng RSA & Chữ ký số.
+
+---
+
+## 3. Báo cáo kết quả Bài 1 - Mã hóa đối xứng AES
+
+### 3.1. Các tính năng đã hoàn thành
+- [x] Sinh cặp khóa ngẫu nhiên AES 256-bit và Vector khởi tạo IV 128-bit.
+- [x] Xuất khóa ra file `.key` và nạp khóa trực tiếp từ file.
+- [x] Mã hóa / giải mã văn bản chuỗi (kết quả hiển thị Base64 trực quan).
+- [x] Mã hóa / giải mã file kích thước lớn (hàng GB) theo luồng đệm (Stream Buffer 1MB), không gây tràn bộ nhớ RAM.
+- [x] Đo lường thời gian xử lý bằng `Stopwatch`, tính tốc độ truyền tải trung bình (`MB/s`).
+- [x] So sánh tính toàn vẹn dữ liệu từng byte bằng hàm băm SHA-256 giữa file nguồn và file giải mã.
+
+### 3.2. Bảng số liệu thực nghiệm đo đạc hiệu năng file lớn
+| Tiêu chí đánh giá | Số liệu thực nghiệm |
+| :--- | :--- |
+| **Tên file thử nghiệm** | *SERVER_EVAL_x64FRE_en-us.iso* |
+| **Kích thước file** | *4810.42 MB* |
+| **Thời gian mã hóa** | *Thời gian: 14.876 giây* |
+| **Tốc độ mã hóa** | *Tốc độ: 323.38 MB/s* |
+| **Thời gian giải mã** | *Thời gian: 6.408 giây* |
+| **Tốc độ giải mã** | *Tốc độ: 750.70 MB/s* |
+| **Mã SHA-256 file nguồn** | *3e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325* |
+| **Mã SHA-256 file sau giải mã** | *3e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325* |
+| **Kết luận toàn vẹn** | **Khớp 100% từng byte (Trùng khớp tuyệt đối SHA-256)** |
+
+### 3.3. Ảnh minh chứng kết quả chạy thực tế
+![Kết quả Bài 1 AES](images/bai1_aes_result.png)
+
+---
+
+## 4. Tiến độ tổng thể bài tập
+- [x] Khởi tạo Repository, .gitignore & cấu trúc Solution 3 tầng
+- [x] **Bài 1**: Hoàn thiện mã hóa đối xứng AES (chuỗi + file lớn hàng GB + đo tốc độ + so sánh byte)
+- [ ] **Bài 2**: Mã hóa bất đối xứng RSA (cặp khóa, View PEM, mã hóa/giải mã, so sánh tốc độ Public vs Private Key)
+- [ ] **Bài 2 mở rộng**: Hiệu ứng tuyết lở SHA-256 & Chữ ký số RSA-PSS ngẫu nhiên hóa
