@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "BaiTap2_RSA": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ROOT": "C:\\Program Files\\dotnet",
+        "DOTNET_MULTILEVEL_LOOKUP": "1"
+      }
+    }
+  }
+}
