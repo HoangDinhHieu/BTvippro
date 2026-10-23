@@ -43,7 +43,8 @@
 | **Kết luận toàn vẹn** | **Khớp 100% từng byte (Trùng khớp tuyệt đối SHA-256)** |
 
 ### 3.3. Ảnh minh chứng kết quả chạy thực tế
-![Kết quả Bài 1 AES](images/bai1_aes_result.png)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f1905c5c-5694-48b4-98c4-a60e6ffa1845" />
+
 
 ---
 
